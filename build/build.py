@@ -5,6 +5,7 @@
 
 Пишет index.html, about.html, experience.html и works/<slug>.html в корень репозитория.
 """
+import datetime
 import json
 import os
 from html import escape
@@ -19,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "3"
+ASSET_V = "4"
 
 
 def e(s):
@@ -44,20 +45,6 @@ def img(key, prefix, alt="", cls="", sizes="100vw", eager=False, style=""):
 
 # ---------------------------------------------------------------- layout
 
-def wordmark_morph(name, mark):
-    """«МП» ⇄ «Мария Путилина»: ключевые буквы видны всегда, остальные
-    раскрываются при наведении — как знак CM в подвале core-method."""
-    out = []
-    first, last = name.split(" ", 1)
-    for wi, word in enumerate((first, last)):
-        if wi:
-            out.append('<span class="wm-space"> </span>')
-        for i, ch in enumerate(word):
-            cls = "wm-letter wm-key" if i == 0 else "wm-letter"
-            out.append(f'<span class="{cls}">{e(ch)}</span>')
-    return "".join(out)
-
-
 def header(prefix, active):
     links = [
         ("index.html", "Проекты", "work"),
@@ -75,24 +62,43 @@ def header(prefix, active):
   <a href="{prefix}index.html" class="topnav-logo topnav-wordmark" aria-label="{e(PERSON['name'])} — на главную">{e(PERSON['name'])}</a>
   <nav class="topnav-side topnav-right" aria-label="Основное меню">
     {items}
-    <a href="mailto:{PERSON['email']}" class="topnav-cta">Связаться</a>
+    <a href="#contacts" class="topnav-cta">Связаться</a>
   </nav>
 </header>"""
 
 
 def footer(prefix):
+    """Подвал по схеме kirstenhumpfer.de: фраза + кнопка-пилюля, под линией —
+    сетка контактов (слева / на ⅔ ширины / у правого края) и нижняя строка."""
+    p = PERSON
+    year = datetime.date.today().year
     return f"""
-<section class="cta reveal">
-  <p class="cta-line">Обсудить проект:</p>
-  <p class="cta-line"><a class="cta-mail" href="mailto:{PERSON['email']}">{PERSON['email']}</a></p>
-  <p class="cta-line"><a class="cta-mail" href="{PERSON['telegram']}" target="_blank" rel="noopener">{PERSON['telegram_handle']}</a></p>
-</section>
-<footer class="site-foot">
-  <a href="{prefix}index.html" class="foot-mark wordmark-morph is-mark" aria-label="{e(PERSON['name'])}">{wordmark_morph(PERSON['name'], PERSON['mark'])}</a>
-  <div class="foot-links">
-    <a href="{prefix}{PERSON['cv']}" download>Резюме, PDF</a>
-    <a href="{PERSON['telegram']}" target="_blank" rel="noopener">Telegram</a>
-    <a href="mailto:{PERSON['email']}">Почта</a>
+<footer class="site-foot" id="contacts">
+  <div class="foot-cta reveal">
+    <p class="foot-title">{e(p['footer_title'])}</p>
+    <a class="foot-button" href="{p['telegram']}" target="_blank" rel="noopener">{e(p['footer_button'])}</a>
+  </div>
+  <div class="foot-grid">
+    <div class="foot-cell foot-main">
+      <p>{e(p['location'])}</p>
+    </div>
+    <div class="foot-cell foot-side">
+      <div>
+        <a href="mailto:{p['email']}">{e(p['email'])}</a>
+        <a href="{p['phone_href']}">{e(p['phone'])}</a>
+      </div>
+      <div class="foot-end">
+        <a href="{p['telegram']}" target="_blank" rel="noopener">Telegram</a>
+        <a href="{prefix}{p['cv']}" download>Резюме, PDF</a>
+      </div>
+    </div>
+    <div class="foot-cell foot-main foot-bottom">
+      <p>© {year} {e(p['name'])}</p>
+    </div>
+    <div class="foot-cell foot-side foot-bottom">
+      <div><p>{e(p['badge'])}</p></div>
+      <div class="foot-end"><a href="#main" class="foot-top">Наверх ↑</a></div>
+    </div>
   </div>
 </footer>"""
 

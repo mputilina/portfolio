@@ -10,6 +10,11 @@ PERSON = {
     "email": "sheron907@gmail.com",
     "telegram": "https://t.me/Mary_Putilina",
     "telegram_handle": "@Mary_Putilina",
+    "phone": "+7 (995) 237-90-02",
+    "phone_href": "tel:+79952379002",
+    "location": "Россия, Санкт-Петербург",
+    "footer_title": "Есть задача? Давайте обсудим.",
+    "footer_button": "Написать в Telegram",
     "cv": "assets/files/putilina-cv.pdf",
     "behance": "https://www.behance.net/gallery/143096117/LIMONCELLO-branding",
 }

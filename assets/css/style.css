@@ -271,75 +271,67 @@ button { font: inherit; color: inherit; }
   .tile-desc { display: none; }
 }
 
-/* ---------------------------------------------------------------- CTA + footer */
+/* ---------------------------------------------------------------- footer
+   Схема kirstenhumpfer.de: крупная фраза и кнопка-пилюля, ниже линия и
+   сетка из двух строк. Колонки совпадают с сеткой плиток на главной:
+   левая занимает две трети, правая треть делится на «контакты» и «ссылки
+   у правого края». Кегли и цвета — из нашей системы. */
 
-.cta {
-  padding: 170px var(--pad) 0;
-  text-align: center;
+.site-foot {
+  padding: 170px var(--pad) calc(24px + env(safe-area-inset-bottom));
+  scroll-margin-top: 40px;
 }
 
-.cta-line {
-  margin: 0;
+.foot-title {
+  max-width: 760px;
+  font-size: clamp(26px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.foot-button {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 26px;
+  padding: 9px 20px 10px;
+  border-radius: 999px;
+  background: var(--fill);
+  color: var(--ink);
   font-size: clamp(16px, 1.4vw, 20px);
-  line-height: 1.3;
+  line-height: 1.2;
   letter-spacing: -0.01em;
-  color: var(--gray-3);
+  text-decoration: none;
+  transition: background-color .25s ease, color .25s ease;
 }
 
-.cta-mail {
-  color: inherit;
+.foot-button:hover { background: var(--ink); color: #fff; }
+
+.foot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--gap);
+  row-gap: 90px;
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.foot-main { grid-column: 1 / 3; }
+.foot-side { display: flex; justify-content: space-between; gap: 20px; }
+.foot-side > div { display: flex; flex-direction: column; }
+.foot-end { text-align: right; align-items: flex-end; }
+
+.foot-cell p { color: var(--gray); }
+.foot-cell a {
+  color: var(--ink);
   text-decoration: none;
   transition: color .2s ease;
 }
+.foot-cell a:hover { color: var(--gray); }
 
-.cta-mail:hover { color: var(--ink); }
-
-.site-foot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 26px;
-  padding: 200px var(--pad) calc(46px + env(safe-area-inset-bottom));
-}
-
-.foot-mark {
-  display: inline-flex;
-  font-size: clamp(44px, 8vw, 104px);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--fill);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.wordmark-morph .wm-letter,
-.wordmark-morph .wm-space {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  transition: max-width .6s var(--ease), opacity .45s ease;
-}
-
-.wordmark-morph .wm-letter { max-width: 1em; }
-.wordmark-morph .wm-space { max-width: .3em; }
-
-.wordmark-morph.is-mark .wm-letter:not(.wm-key),
-.wordmark-morph.is-mark .wm-space { max-width: 0; opacity: 0; }
-
-.foot-mark.is-mark:hover .wm-letter:not(.wm-key),
-.foot-mark.is-mark:focus-visible .wm-letter:not(.wm-key) { max-width: 1em; opacity: 1; }
-.foot-mark.is-mark:hover .wm-space,
-.foot-mark.is-mark:focus-visible .wm-space { max-width: .3em; opacity: 1; }
-
-.foot-links {
-  display: flex;
-  gap: 18px;
-  font-size: 11px;
-  color: var(--gray-3);
-}
-
-.foot-links a { text-decoration: none; transition: color .2s ease; }
-.foot-links a:hover { color: var(--ink); }
+.foot-bottom, .foot-bottom p { font-size: 12px; color: var(--gray-2); }
 
 /* ---------------------------------------------------------------- about (info) */
 
@@ -458,7 +450,6 @@ button { font: inherit; color: inherit; }
 }
 
 .info-since { margin-top: 30px; font-size: 12px; color: var(--gray-2); }
-.info-end + .cta { padding-top: 130px; }
 
 /* ---------------------------------------------------------------- experience */
 
@@ -878,6 +869,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   .info-person { grid-template-columns: 1fr; padding-top: 70px; }
   .info-skills { padding-top: 90px; gap: 60px; }
   .info-end { padding-top: 100px; }
+  .info-end + .site-foot { padding-top: 120px; }
 
   .xp-hero { padding-top: 120px; }
   .xp-statement { text-indent: 1.2em; }
@@ -907,6 +899,14 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   .pager { font-size: 12px; gap: 6px; }
   .pager a { padding: 5px 6px; }
 
-  .cta { padding-top: 110px; }
-  .site-foot { padding-top: 90px; }
+  .site-foot { padding-top: 110px; }
+  .foot-title { font-size: 22px; line-height: 1.2; }
+  .foot-button { display: flex; justify-content: center; margin-top: 30px; min-height: 52px; font-size: 16px; }
+  .foot-grid { grid-template-columns: 1fr; row-gap: 40px; margin-top: 60px; }
+  .foot-main { grid-column: auto; }
+  .foot-side { display: grid; grid-template-columns: 1fr 1fr; row-gap: 40px; }
+  .foot-side:not(.foot-bottom) > div:first-child { grid-column: 1 / -1; }
+  .foot-bottom .foot-end { text-align: right; align-items: flex-end; }
+  .foot-end { text-align: left; align-items: flex-start; }
+  .foot-bottom.foot-main { order: 2; }
 }
