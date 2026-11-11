@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "8"
+ASSET_V = "9"
 
 
 def e(s):
@@ -301,8 +301,13 @@ def render_block(b, prefix, c):
         return single_figure(b[1], b[2], prefix, c)
 
     if kind == "images":
-        files, cols = b[1], b[2]
-        figs = "".join(f'<figure class="case-figure">{img(f, prefix, c["title"])}</figure>' for f in files)
+        # элемент — файл или (файл, сноска)
+        items = [f if isinstance(f, tuple) else (f, None) for f in b[1]]
+        files, cols = [f for f, _ in items], b[2]
+        figs = "".join(
+            f'<figure class="case-figure">{img(f, prefix, c["title"])}'
+            f'{f"<figcaption class=case-caption>{e(cap)}</figcaption>" if cap else ""}</figure>'
+            for f, cap in items)
         ratios = [DIMS[f][0] / DIMS[f][1] for f in files]
         natural = " natural" if max(ratios) / min(ratios) < 1.12 else ""
         return f'<div class="case-gallery cols-{cols}{natural} reveal">{figs}</div>'

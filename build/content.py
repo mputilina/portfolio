@@ -90,16 +90,14 @@ CASES = [
                 "blocks": [
                     ("text", "Гость встречается с айдентикой конференции ещё на регистрации: брендированные ленты для бейджей и стойка с логотипом. Дальше — сцена, экраны и залы, собранные в одной системе."),
                     ("images", ["conversations/conference_2025_1", "conversations/conference_2025_2"], 2),
-                    ("row", "conversations/conference_2026_2", "Фотозона с табличками-мемами — «Claude, выходи за меня на работу», «Сгенери и отпусти». Индустрия смеётся над собой, а гости уносят фото в соцсети."),
-                    ("image", "conversations/conference_2026_1", None),
+                    ("images", ["conversations/conference_2026_1", "conversations/conference_2026_2"], 2),
                 ],
             },
             {
                 "label": "Стенд Just AI",
                 "title": "Витрина продуктов компании",
                 "blocks": [
-                    ("row", "conversations/stand_2025", "2025: стенд вокруг Agent Platform — светлое пространство с зонами продуктов и местом для демонстраций."),
-                    ("row", "conversations/stand_2026", "2026: «Just AI inside» — лаунж с диваном, ретро-консолями и стеной с работами. Стенд стал местом, куда приходят не только за демо, но и чтобы остаться."),
+                    ("images", [("conversations/stand_2025", "2025: стенд вокруг Agent Platform — светлое пространство с зонами продуктов и местом для демонстраций."), ("conversations/stand_2026", "2026: «Just AI inside» — лаунж с диваном, ретро-консолями и стеной с работами. Стенд стал местом, куда приходят не только за демо, но и чтобы остаться.")], 2),
                     ("image", "conversations/stand_2026_2", None),
                 ],
             },
@@ -110,7 +108,6 @@ CASES = [
                     ("text", "Мерч разговаривает языком комьюнити: футболка «Powered by AI · Conversations family · since 2018», блокнот «This notebook is AI-free — for pure human creativity only» и стикеры с внутренними шутками индустрии: «Not AI-generated», «I’m in my AI era», «No code, just vibe», «Москва AI не верит». А ещё платок с пиксельным градиентом Conversations и ремешок для телефона с акриловым шармом «AI»."),
                     ("images", ["conversations/merch_1", "conversations/merch_5"], 2),
                     ("images", ["conversations/merch_3", "conversations/merch_4", "conversations/merch_6"], 3),
-                    ("row", "conversations/merch_2", "Чемодан Generation AI Awards — объёмная зелёная спираль из айдентики премии."),
                 ],
             },
             {
@@ -119,8 +116,8 @@ CASES = [
                 "blocks": [
                     ("text", "Церемония прошла в Санкт-Петербурге, в Gaika Space, в белые ночи. Для неё подготовили фотозону с объёмными буквами, сертификаты для лауреатов, папки для дипломов и статуэтки."),
                     ("image", "conversations/award_1", None),
-                    ("images", ["conversations/award_2", "conversations/award_3", "conversations/award_4"], 3),
-                    ("row", "conversations/award_5", "Статуэтка «Лучший проект в области генеративного AI» и папка для диплома."),
+                    ("images", ["conversations/award_2", "conversations/award_5"], 2),
+                    ("images", ["conversations/award_3", "conversations/award_4"], 2),
                 ],
             },
         ],

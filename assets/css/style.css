@@ -721,6 +721,10 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .case-gallery.natural { align-items: stretch; }
 .case-gallery.natural .case-figure { display: flex; }
 .case-gallery.natural .case-figure img { aspect-ratio: auto !important; height: 100%; object-fit: cover; }
+/* ряд с подписями: фото сверху, сноска под ним */
+.case-gallery:has(.case-caption) { align-items: start; }
+.case-gallery:has(.case-caption) .case-figure { display: block; margin-bottom: 0; }
+.case-gallery:has(.case-caption) + * { margin-top: 28px; }
 
 .scroll-frame {
   height: min(78vh, 760px);
