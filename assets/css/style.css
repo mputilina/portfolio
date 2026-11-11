@@ -670,6 +670,17 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   letter-spacing: -0.02em;
 }
 
+.section-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--intro-gap);
+  align-items: start;
+  margin-top: 40px;
+}
+.section-split .section-title { margin-top: 0; }
+.section-split .case-list { width: 100%; margin: 0 !important; }
+.section-split + .section-body { margin-top: 60px; }
+
 .section-body { display: grid; gap: var(--gap); margin-top: 40px; }
 
 .section-body > .case-text,
@@ -826,6 +837,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   .xp-heading { position: static; }
   .case-intro { grid-template-columns: 1fr; gap: 40px; }
   .case-list { width: 100%; }
+  .section-split { grid-template-columns: 1fr; gap: 26px; }
   .case-gallery.cols-4 { grid-template-columns: repeat(2, 1fr); }
   .skills-block { grid-template-columns: 1fr; gap: 20px; }
 }

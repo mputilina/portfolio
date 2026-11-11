@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "9"
+ASSET_V = "10"
 
 
 def e(s):
@@ -365,12 +365,20 @@ def build_case(i):
     n = 0
     for s in c["sections"]:
         n += 1
-        blocks = "".join(render_block(b, prefix, c) for b in s["blocks"])
+        title = f'<h2 class="section-title reveal">{e(s["title"])}</h2>'
+        rest = s["blocks"]
+        if rest and rest[0][0] == "list":
+            # Заголовок слева, пункты справа на той же высоте — в колонке «Контекста»
+            head = f'<div class="section-split">{title}{render_block(rest[0], prefix, c)}</div>'
+            rest = rest[1:]
+        else:
+            head = title
+        blocks = "".join(render_block(b, prefix, c) for b in rest)
+        body = f'\n    <div class="section-body">{blocks}</div>' if blocks else ""
         sections.append(f"""
   <section class="case-section">
     <div class="section-head reveal"><span class="section-num">{n:02d}</span><span class="section-label">{e(s['label'])}</span></div>
-    <h2 class="section-title reveal">{e(s['title'])}</h2>
-    <div class="section-body">{blocks}</div>
+    {head}{body}
   </section>""")
 
     if c["results"]:
