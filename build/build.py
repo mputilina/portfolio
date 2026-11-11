@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "7"
+ASSET_V = "8"
 
 
 def e(s):
@@ -296,20 +296,16 @@ def render_block(b, prefix, c):
         items = "".join(
             f'<li><span class="num">{i:02d}</span><span>{e(t)}</span></li>' for i, t in enumerate(b[1], 1))
         return f'<ol class="case-list reveal">{items}</ol>'
-    if kind == "image":
-        cap = f"<figcaption>{e(b[2])}</figcaption>" if b[2] else ""
-        return f'<figure class="case-figure reveal">{img(b[1], prefix, c["title"])}{cap}</figure>'
+    if kind in ("image", "row"):
+        # Подпись к фото — сноской под картинкой, а не колонкой рядом.
+        return single_figure(b[1], b[2], prefix, c)
+
     if kind == "images":
         files, cols = b[1], b[2]
         figs = "".join(f'<figure class="case-figure">{img(f, prefix, c["title"])}</figure>' for f in files)
         ratios = [DIMS[f][0] / DIMS[f][1] for f in files]
         natural = " natural" if max(ratios) / min(ratios) < 1.12 else ""
         return f'<div class="case-gallery cols-{cols}{natural} reveal">{figs}</div>'
-    if kind == "row":
-        w, h = DIMS[b[1]]
-        media = scroll_frame(b[1], prefix, c) if h / w > 1.6 else img(b[1], prefix, c["title"])
-        return (f'<div class="case-row reveal"><figure class="case-figure">{media}</figure>'
-                f'<p class="case-note">{e(b[2])}</p></div>')
     if kind == "scroll":
         return f'<figure class="case-figure reveal">{scroll_frame(b[1], prefix, c)}<figcaption>{e(b[2])}</figcaption></figure>'
     if kind == "compare":
@@ -332,6 +328,16 @@ def render_block(b, prefix, c):
     if kind == "behance":
         return f'<a class="btn-wide reveal" href="{PERSON["behance"]}" target="_blank" rel="noopener">{e(b[1])} ↗</a>'
     raise ValueError(kind)
+
+
+def single_figure(key, caption, prefix, c):
+    w, h = DIMS[key]
+    if h / w > 1.6:          # длинный макет — в окне с прокруткой
+        media, cls = scroll_frame(key, prefix, c), ""
+    else:                    # вертикальное и квадратное фото не выше экрана
+        media, cls = img(key, prefix, c["title"]), (" is-upright" if h / w > 0.9 else "")
+    cap = f'<figcaption class="case-caption">{e(caption)}</figcaption>' if caption else ""
+    return f'<figure class="case-figure{cls} reveal">{media}{cap}</figure>'
 
 
 def scroll_frame(key, prefix, c):
