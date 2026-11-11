@@ -58,7 +58,6 @@ CASES = [
         "headline": "Визуальная среда конференции Conversations и премии Generation AI Awards",
         "tile_note": "Стенды, фотозоны, мерч и наградная продукция для двух главных событий Just AI",
         "cover": "conversations/cover",
-        "hero": "conversations/conference_2026_1",
         "tags": ["events", "merch", "print", "identity"],
         "meta": [
             ("Роль", "Коммуникационный дизайнер"),
@@ -92,6 +91,7 @@ CASES = [
                     ("text", "Гость встречается с айдентикой конференции ещё на регистрации: брендированные ленты для бейджей и стойка с логотипом. Дальше — сцена, экраны и залы, собранные в одной системе."),
                     ("images", ["conversations/conference_2025_1", "conversations/conference_2025_2"], 2),
                     ("row", "conversations/conference_2026_2", "Фотозона с табличками-мемами — «Claude, выходи за меня на работу», «Сгенери и отпусти». Индустрия смеётся над собой, а гости уносят фото в соцсети."),
+                    ("image", "conversations/conference_2026_1", None),
                 ],
             },
             {
@@ -138,7 +138,6 @@ CASES = [
         "headline": "Редизайн сайта и визуальная поддержка AppSec-платформы",
         "tile_note": "Сайт, соцсети, мерч и раздатка для продукта Digital Security",
         "cover": "hexway/03",
-        "hero": "hexway/01",
         "tags": ["web", "merch", "print", "social"],
         "meta": [
             ("Роль", "Коммуникационный дизайнер"),
@@ -168,6 +167,7 @@ CASES = [
                 "label": "Визуальный итог",
                 "title": "Соцсети, мерч и выставки",
                 "blocks": [
+                    ("image", "hexway/01", None),
                     ("image", "hexway/02", None),
                     ("images", ["hexway/04", "hexway/05", "hexway/06", "hexway/03"], 2),
                 ],
@@ -243,7 +243,6 @@ CASES = [
         "tile_note": "Прототип, дизайн и передача в разработку корпоративного сайта",
         "cover": "checkmate/01",
         "cover_pos": "96% 50%",
-        "hero": "checkmate/01",
         "tags": ["web"],
         "meta": [
             ("Роль", "Коммуникационный дизайнер"),
@@ -306,7 +305,6 @@ CASES = [
         "tile_note": "Знак, шрифтовая часть и носители в айдентике Solar",
         "cover": "dsec/06",
         "cover_pos": "50% 50%",
-        "hero": "dsec/04",
         "tags": ["identity", "merch", "print"],
         "meta": [
             ("Роль", "Коммуникационный дизайнер"),
@@ -346,7 +344,6 @@ CASES = [
         "headline": "Три сайта, выставки и раздатка для группы компаний",
         "tile_note": "Три сайта на Тильде, стенды для выставок и печатные материалы",
         "cover": "solisoft/12",
-        "hero": "solisoft/08",
         "tags": ["web", "print", "illustration"],
         "meta": [
             ("Роль", "Дизайнер (парт-тайм)"),
@@ -416,7 +413,6 @@ CASES = [
         "headline": "Мерч, иллюстрации, лендинги и соцсети для клиентов Ancor",
         "tile_note": "Работа с HR-командой: Алроса, Nissan, ESG Fest, РГТ",
         "cover": "ancor/12",
-        "hero": "ancor/01",
         "tags": ["print", "illustration", "merch", "social", "web"],
         "meta": [
             ("Роль", "Дизайнер (парт-тайм)"),
@@ -476,7 +472,6 @@ CASES = [
         "headline": "Логотип и этикетки для домашнего лимончелло",
         "tile_note": "Логотип с котами и этикетка для каждого вкуса",
         "cover": "limoncello/02",
-        "hero": "limoncello/01",
         "tags": ["identity", "packaging"],
         "meta": [
             ("Роль", "Дизайнер"),

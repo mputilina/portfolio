@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "5"
+ASSET_V = "6"
 
 
 def e(s):
@@ -380,12 +380,9 @@ def build_case(i):
 
     body = f"""
 <article class="case">
-  <header class="case-hero" data-dark>
-    {img(c['hero'], prefix, c['title'], eager=True)}
-    <div class="case-hero-text">
-      <p class="case-eyebrow">{e(c['title'])} · {e(c['subtitle'])}</p>
-      <h1 class="case-title">{e(c['headline'])}</h1>
-    </div>
+  <header class="case-hero">
+    <p class="case-eyebrow">{e(c['title'])} · {e(c['subtitle'])}</p>
+    <h1 class="case-title">{e(c['headline'])}</h1>
   </header>
   <div class="case-meta">{''.join(meta)}</div>
   <div class="case-intro">

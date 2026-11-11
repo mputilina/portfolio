@@ -595,40 +595,22 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 /* ---------------------------------------------------------------- case */
 
+/* Первый экран кейса — только текст, как вступление на главной и в «Опыте»;
+   фотографии живут в теле кейса. */
 .case-hero {
-  position: relative;
-  margin: 70px var(--pad) 0;
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--ink);
-  aspect-ratio: 16 / 8;
-  max-height: calc(100vh - 110px);
-  width: calc(100% - 2 * var(--pad));
+  padding: 150px var(--pad) 60px;
 }
 
-.case-hero > img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: .78;
+.case-eyebrow {
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--gray-2);
 }
-
-.case-hero::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(19,20,21,.7));
-}
-
-.case-hero-text {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  z-index: 1;
-  padding: 34px;
-  color: #fff;
-}
-
-.case-eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; opacity: .75; }
 
 .case-title {
-  margin-top: 12px;
-  max-width: 980px;
+  margin-top: 18px;
+  max-width: 1080px;
   font-size: clamp(30px, 4.4vw, 64px);
   line-height: 1.02;
   letter-spacing: -0.03em;
@@ -638,6 +620,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   display: grid;
   grid-template-columns: 1fr 2fr 1fr 1fr;
   margin: 0 var(--pad);
+  border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 
@@ -645,6 +628,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .meta-cell + .meta-cell { padding-left: 18px; border-left: 1px solid var(--line); }
 .meta-cell p { margin-top: 6px; font-size: 13px; line-height: 1.5; }
 .meta-cell .dot { color: var(--gray-3); margin: 0 6px; }
+.meta-cell p > span:not(.dot) { white-space: nowrap; }
 
 .case-intro {
   display: grid;
@@ -849,7 +833,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
   .topnav-blur { height: 104px; }
   .topnav { flex-direction: column; align-items: flex-start; gap: 6px; padding-top: calc(12px + env(safe-area-inset-top)); padding-bottom: 10px; background: rgba(255,255,255,.86); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
-  .page-about .topnav, .page-case .topnav { background: rgba(255,255,255,.86); }
+  .page-about .topnav { background: rgba(255,255,255,.86); }
   .topnav-wordmark { position: static; transform: none; font-size: 18px; }
   .topnav-left { display: none; }
   .topnav-right { margin-left: -10px; gap: 0; font-size: 12px; flex-wrap: wrap; }
@@ -881,8 +865,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   .xp-thumbs .xp-thumb:nth-child(3) { grid-column: 1 / -1; aspect-ratio: 16 / 7; }
   .edu-row { grid-template-columns: 1fr; gap: 8px; }
 
-  .case-hero { margin-top: 96px; aspect-ratio: 4 / 5; }
-  .case-hero-text { padding: 20px; }
+  .case-hero { padding: 130px var(--pad) 40px; }
   .case-meta { grid-template-columns: 1fr; }
   .meta-cell, .meta-cell + .meta-cell { padding: 12px 0; border-left: 0; }
   .meta-cell + .meta-cell { border-top: 1px solid var(--line); }
