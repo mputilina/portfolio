@@ -618,7 +618,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 .case-meta {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
   margin: 0 var(--pad);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -628,6 +628,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .meta-cell + .meta-cell { padding-left: 18px; border-left: 1px solid var(--line); }
 .meta-cell p { margin-top: 6px; font-size: 13px; line-height: 1.5; }
 .meta-cell .dot { color: var(--gray-3); margin: 0 6px; }
+.meta-cell p > span { display: inline-block; }
 .meta-cell p > span:not(.dot) { white-space: nowrap; }
 
 .case-intro {
