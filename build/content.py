@@ -107,9 +107,9 @@ CASES = [
                 "label": "Мерч",
                 "title": "Вещи, которые хочется забрать с собой",
                 "blocks": [
-                    ("text", "Мерч разговаривает языком комьюнити: футболка «Powered by AI · Conversations family · since 2018», блокнот «This notebook is AI-free — for pure human creativity only» и стикеры с внутренними шутками индустрии: «Not AI-generated», «I’m in my AI era», «No code, just vibe», «Москва AI не верит»."),
+                    ("text", "Мерч разговаривает языком комьюнити: футболка «Powered by AI · Conversations family · since 2018», блокнот «This notebook is AI-free — for pure human creativity only» и стикеры с внутренними шутками индустрии: «Not AI-generated», «I’m in my AI era», «No code, just vibe», «Москва AI не верит». А ещё платок с пиксельным градиентом Conversations и ремешок для телефона с акриловым шармом «AI»."),
                     ("images", ["conversations/merch_1", "conversations/merch_5"], 2),
-                    ("images", ["conversations/merch_3", "conversations/merch_4"], 2),
+                    ("images", ["conversations/merch_3", "conversations/merch_4", "conversations/merch_6"], 3),
                     ("row", "conversations/merch_2", "Чемодан Generation AI Awards — объёмная зелёная спираль из айдентики премии."),
                 ],
             },
