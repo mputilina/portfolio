@@ -306,5 +306,77 @@
 "limoncello/03": [
 720,
 940
+],
+"conversations/award_1": [
+1050,
+699
+],
+"conversations/award_2": [
+1050,
+701
+],
+"conversations/award_3": [
+1050,
+699
+],
+"conversations/award_4": [
+1050,
+699
+],
+"conversations/award_5": [
+1080,
+1080
+],
+"conversations/conference_2025_1": [
+1050,
+701
+],
+"conversations/conference_2025_2": [
+1050,
+701
+],
+"conversations/conference_2026_1": [
+1050,
+699
+],
+"conversations/conference_2026_2": [
+698,
+466
+],
+"conversations/cover": [
+1050,
+701
+],
+"conversations/merch_1": [
+1536,
+1536
+],
+"conversations/merch_2": [
+815,
+1245
+],
+"conversations/merch_3": [
+1248,
+1094
+],
+"conversations/merch_4": [
+1203,
+1094
+],
+"conversations/merch_5": [
+1000,
+1000
+],
+"conversations/stand_2025": [
+1050,
+701
+],
+"conversations/stand_2026": [
+1050,
+699
+],
+"conversations/stand_2026_2": [
+1050,
+699
 ]
 }

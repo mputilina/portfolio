@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "4"
+ASSET_V = "5"
 
 
 def e(s):
@@ -370,7 +370,7 @@ def build_case(i):
             for lbl, v, note in c["results"])
         sections.append(f"""
   <section class="case-section case-results">
-    <div class="section-head reveal"><span class="section-num">{n:02d}</span><span class="section-label">Ключевые результаты</span></div>
+    <div class="section-head reveal"><span class="section-num">{n:02d}</span><span class="section-label">{e(c.get('results_label', 'Ключевые результаты'))}</span></div>
     <div class="results n{len(c['results'])}">{cells}</div>
   </section>""")
 
