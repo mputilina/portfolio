@@ -60,7 +60,7 @@ button { font: inherit; color: inherit; }
 .skip {
   position: absolute; left: 12px; top: -60px; z-index: 200;
   background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 6px;
-  text-decoration: none; font-size: 13px;
+  text-decoration: none; font-size: 14px;
 }
 .skip:focus { top: 12px; }
 
@@ -109,7 +109,7 @@ button { font: inherit; color: inherit; }
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .topnav-badge {
@@ -257,7 +257,7 @@ button { font: inherit; color: inherit; }
   padding: 3px 8px 4px;
 }
 
-.tile-desc { max-width: 320px; font-size: 13px; line-height: 1.4; }
+.tile-desc { max-width: 320px; font-size: 14px; line-height: 1.4; }
 
 @media (hover: hover) and (pointer: fine) {
   .tile:hover::after { opacity: 1; }
@@ -592,7 +592,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .edu-row p { margin-top: 4px; color: var(--gray); font-size: 14px; }
 
 .tools { display: flex; flex-wrap: wrap; gap: 6px; }
-.tools li { padding: 7px 14px 8px; border-radius: 999px; background: var(--fill); font-size: 13px; }
+.tools li { padding: 7px 14px 8px; border-radius: 999px; background: var(--fill); font-size: 14px; }
 
 /* ---------------------------------------------------------------- case */
 
@@ -627,7 +627,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 .meta-cell { padding: 14px 18px 16px 0; }
 .meta-cell + .meta-cell { padding-left: 18px; border-left: 1px solid var(--line); }
-.meta-cell p { margin-top: 6px; font-size: 13px; line-height: 1.5; }
+.meta-cell p { margin-top: 6px; font-size: 14px; line-height: 1.5; }
 .meta-cell .dot { color: var(--gray-3); margin: 0 6px; }
 .meta-cell p > span { display: inline-block; }
 .meta-cell p > span:not(.dot) { white-space: nowrap; }
@@ -657,7 +657,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   gap: 10px;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--line);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .section-num { font-size: 10px; color: var(--gray-2); }
@@ -710,7 +710,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .case-caption {
   max-width: 620px;
   margin-top: 12px !important;
-  font-size: 13px !important;
+  font-size: 14px !important;
   line-height: 1.5;
   color: var(--gray);
 }
@@ -753,7 +753,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .compare-label { margin: 0 0 10px !important; font-size: 12px; color: var(--gray); }
 
 .case-columns { display: grid; grid-template-columns: 1fr 1fr; gap: var(--intro-gap); }
-.case-col h4 { font-size: 13px; color: var(--gray-2); text-transform: uppercase; letter-spacing: .06em; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.case-col h4 { font-size: 14px; color: var(--gray-2); text-transform: uppercase; letter-spacing: .06em; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 .case-col li { padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
 
 .site-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); margin-bottom: 30px; }
@@ -761,7 +761,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .site-card-media { display: block; border-radius: var(--radius); overflow: hidden; background: var(--fill); }
 .site-card-media img { width: 100%; aspect-ratio: 647 / 309; object-fit: cover; object-position: top; transition: transform 1s var(--ease); }
 .site-card:hover img { transform: scale(1.03); }
-.site-card-label { display: block; margin-top: 10px; font-size: 13px; }
+.site-card-label { display: block; margin-top: 10px; font-size: 14px; }
 
 .results { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 0; }
 .results.n2 { grid-template-columns: repeat(2, 1fr); }
@@ -813,7 +813,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   justify-content: space-between;
   gap: 20px;
   margin-top: 26px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .pager a { text-decoration: none; color: var(--gray); padding: 5px 10px; border-radius: 999px; transition: background-color .2s ease, color .2s ease; }
@@ -831,6 +831,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 @media (max-width: 991px) {
   :root { --pad: 24px; }
+  .topnav-wordmark { position: static; transform: none; }
   .grid { grid-template-columns: repeat(2, 1fr); }
   .info-person { grid-template-columns: 1fr 1fr; gap: 34px; }
   .xp-section { grid-template-columns: 1fr; gap: 30px; padding-top: 100px; }
