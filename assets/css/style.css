@@ -757,7 +757,8 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 /* Вариант для плитки на главной: портрет 4:5, вертикальный «экран» */
 .fly.fly-tile { aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; perspective: 900px; }
-.fly-tile .fly-screen { left: 13%; top: 10%; width: 74%; aspect-ratio: 3 / 4; border-radius: 8px; }
+/* экран тех же пропорций 16:10, что в кейсе, — по центру плитки */
+.fly-tile .fly-screen { left: 10%; width: 80%; top: 30%; }
 .fly-tile .fly-dof { height: 30%; }
 .tile-media .fly-screen img { height: auto; object-fit: initial; transition: none; }
 
