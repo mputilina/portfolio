@@ -76,13 +76,13 @@
       { t: 17,   s: 1,    rx: 0,  ry: 0,  rz: 0,   p: 1 }
     ] },
     soft: { len: 16, keys: [
-      { t: 0,    s: 1,    rx: 0,  ry: 0,   rz: 0,    p: 0 },
-      { t: 1.6,  s: 1.04, rx: 5,  ry: -6,  rz: -1,   p: 0 },
-      { t: 4,    s: 1.75, rx: 9,  ry: -9,  rz: -2.5, p: 0.07 },
-      { t: 7,    s: 1.8,  rx: 6,  ry: 7,   rz: 1.5,  p: 0.34 },
-      { t: 10,   s: 1.76, rx: 10, ry: -8,  rz: -2,   p: 0.6 },
-      { t: 13,   s: 1.8,  rx: 7,  ry: 7,   rz: 1.5,  p: 0.86 },
-      { t: 16,   s: 1.76, rx: 8,  ry: -3,  rz: -0.5, p: 1 }
+      { t: 0,    s: 1,    tx: 0,    rx: 0,  ry: 0,  rz: 0,    p: 0 },
+      { t: 1.6,  s: 1.03, tx: 0,    rx: 4,  ry: -5, rz: -0.8, p: 0 },
+      { t: 4,    s: 1.42, tx: 0.09, rx: 8,  ry: -8, rz: -2,   p: 0.07 },
+      { t: 7,    s: 1.46, tx: 0.08, rx: 5,  ry: 6,  rz: 1.2,  p: 0.34 },
+      { t: 10,   s: 1.43, tx: 0.09, rx: 9,  ry: -7, rz: -1.6, p: 0.6 },
+      { t: 13,   s: 1.46, tx: 0.08, rx: 6,  ry: 6,  rz: 1.2,  p: 0.86 },
+      { t: 16,   s: 1.42, tx: 0.09, rx: 7,  ry: -3, rz: -0.4, p: 1 }
     ] }
   };
   var ease = function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
@@ -93,7 +93,7 @@
     var a = keys[i], b = keys[i + 1];
     var k = ease(Math.min(1, Math.max(0, (t - a.t) / (b.t - a.t))));
     var o = {};
-    ['s', 'rx', 'ry', 'rz', 'p'].forEach(function (n) { o[n] = a[n] + (b[n] - a[n]) * k; });
+    ['s', 'tx', 'rx', 'ry', 'rz', 'p'].forEach(function (n) { o[n] = (a[n] || 0) + ((b[n] || 0) - (a[n] || 0)) * k; });
     return o;
   }
 
@@ -122,7 +122,8 @@
     function apply(t) {
       var f = flyFrame(preset.keys, t);
       var travel = Math.max(0, pic.offsetHeight - screen.clientHeight);
-      screen.style.transform = 'scale(' + (f.s / MAX) + ') rotateX(' + f.rx + 'deg) rotateY(' + f.ry + 'deg) rotateZ(' + f.rz + 'deg)';
+      // tx — сдвиг вправо в долях ширины кадра: левый край страницы остаётся в кадре
+      screen.style.transform = 'translateX(' + (f.tx * fly.clientWidth) + 'px) scale(' + (f.s / MAX) + ') rotateX(' + f.rx + 'deg) rotateY(' + f.ry + 'deg) rotateZ(' + f.rz + 'deg)';
       pic.style.transform = 'translate3d(0,' + (-f.p * travel) + 'px,0)';
       // мягкая склейка цикла
       var fade = t > LEN - .5 ? (LEN - t) / .5 : (t < .4 ? t / .4 : 1);
