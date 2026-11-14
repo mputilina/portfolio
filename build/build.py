@@ -27,10 +27,24 @@ def e(s):
     return escape(s, quote=True)
 
 
+_HASHES = {}
+
+
+def asset_hash(rel):
+    """Отпечаток содержимого файла: картинка поменялась — поменялся адрес,
+    и браузер не покажет старую версию из кэша."""
+    if rel not in _HASHES:
+        import hashlib
+        with open(os.path.join(ROOT, rel), "rb") as f:
+            _HASHES[rel] = hashlib.md5(f.read()).hexdigest()[:8]
+    return _HASHES[rel]
+
+
 def img(key, prefix, alt="", cls="", sizes="100vw", eager=False, style=""):
     w, h = DIMS[key]
+    rel = f"assets/img/{key}.webp"
     attrs = [
-        f'src="{prefix}assets/img/{key}.webp"',
+        f'src="{prefix}{rel}?v={asset_hash(rel)}"',
         f'width="{w}" height="{h}"',
         f'alt="{e(alt)}"',
         'decoding="async"',
