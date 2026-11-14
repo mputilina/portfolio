@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "12"
+ASSET_V = "13"
 
 
 def e(s):
@@ -290,6 +290,14 @@ def render_block(b, prefix, c):
     kind = b[0]
     if kind == "lead":
         return f'<p class="case-lead reveal">{e(b[1])}</p>'
+    if kind == "text_static":
+        # видим сразу, без анимации появления
+        return f'<p class="case-text reveal is-in">{e(b[1])}</p>'
+    if kind == "cards":
+        cards = "".join(
+            f'<li class="case-card"><span class="num">{i:02d}</span><p>{e(t)}</p></li>'
+            for i, t in enumerate(b[1], 1))
+        return f'<ul class="case-cards reveal">{cards}</ul>'
     if kind == "text":
         return f'<p class="case-text reveal">{e(b[1])}</p>'
     if kind == "list":
