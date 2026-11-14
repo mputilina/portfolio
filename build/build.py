@@ -328,7 +328,8 @@ def render_block(b, prefix, c):
             f'{f"<figcaption class=case-caption>{e(cap)}</figcaption>" if cap else ""}</figure>'
             for f, cap in items)
         ratios = [DIMS[f][0] / DIMS[f][1] for f in files]
-        natural = " natural" if max(ratios) / min(ratios) < 1.12 else ""
+        forced = len(b) > 3 and b[3] == "natural"
+        natural = " natural" if forced or max(ratios) / min(ratios) < 1.12 else ""
         return f'<div class="case-gallery cols-{cols}{natural} reveal">{figs}</div>'
     if kind == "scroll":
         return f'<figure class="case-figure reveal">{scroll_frame(b[1], prefix, c)}<figcaption>{e(b[2])}</figcaption></figure>'
