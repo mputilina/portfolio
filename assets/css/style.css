@@ -829,6 +829,8 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .case-gallery.cols-3 .case-figure img,
 .case-gallery.cols-4 .case-figure img { aspect-ratio: 1 / 1; object-fit: cover; }
 .case-gallery.cols-2 .case-figure img { aspect-ratio: 4 / 3; object-fit: cover; }
+.case-gallery.equal { grid-template-columns: var(--cols); }
+.case-gallery.equal .case-figure img { aspect-ratio: auto; object-fit: fill; }
 .case-gallery.natural { align-items: stretch; }
 .case-gallery.natural .case-figure { display: flex; }
 .case-gallery.natural .case-figure img { aspect-ratio: auto !important; height: 100%; object-fit: cover; }

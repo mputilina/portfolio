@@ -164,8 +164,7 @@ CASES = [
                 "label": "Визуальный итог",
                 "title": "Соцсети, мерч и выставки",
                 "blocks": [
-                    ("image", "hexway/01", None),
-                    ("image", "hexway/02", None),
+                    ("images", ["hexway/01", "hexway/02"], 2, "equal"),
                     ("images", ["hexway/04", "hexway/05", "hexway/06", "hexway/03"], 2),
                 ],
             },

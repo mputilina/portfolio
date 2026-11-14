@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "15"
+ASSET_V = "16"
 
 
 def e(s):
@@ -328,8 +328,13 @@ def render_block(b, prefix, c):
             f'{f"<figcaption class=case-caption>{e(cap)}</figcaption>" if cap else ""}</figure>'
             for f, cap in items)
         ratios = [DIMS[f][0] / DIMS[f][1] for f in files]
-        forced = len(b) > 3 and b[3] == "natural"
-        natural = " natural" if forced or max(ratios) / min(ratios) < 1.12 else ""
+        mode = b[3] if len(b) > 3 else ""
+        if mode == "equal":
+            # колонки пропорциональны картинкам — одна высота, без обрезки
+            cols_css = " ".join(f"{r:.4f}fr" for r in ratios)
+            return (f'<div class="case-gallery cols-{cols} equal reveal" '
+                    f'style="--cols:{cols_css}">{figs}</div>')
+        natural = " natural" if mode == "natural" or max(ratios) / min(ratios) < 1.12 else ""
         return f'<div class="case-gallery cols-{cols}{natural} reveal">{figs}</div>'
     if kind == "scroll":
         return f'<figure class="case-figure reveal">{scroll_frame(b[1], prefix, c)}<figcaption>{e(b[2])}</figcaption></figure>'
