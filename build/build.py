@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "19"
+ASSET_V = "24"
 
 
 def e(s):
@@ -154,7 +154,8 @@ def fly_html(key, colors, prefix, title, extra_cls=""):
     """Пролёт камеры над длинным скриншотом: 3D-наклон, прокрутка, размытые края.
     Таймлайн — в assets/js/main.js ([data-fly])."""
     style = f"--fly-bg:{colors['bg']};--fly-bg2:{colors['bg2']};--fly-glow:{colors['glow']}"
-    return (f'<div class="fly{extra_cls}" data-fly style="{style}" '
+    preset = colors.get("preset", "deep")
+    return (f'<div class="fly fly-{preset}{extra_cls}" data-fly="{preset}" style="{style}" '
             f'role="img" aria-label="Анимация: прокрутка страницы {e(title)} в перспективе">'
             f'<div class="fly-glow" aria-hidden="true"></div>'
             f'<div class="fly-stage"><div class="fly-screen">{img(key, prefix, "")}</div></div>'

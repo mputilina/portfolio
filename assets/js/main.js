@@ -61,57 +61,84 @@
     update();
   }
 
-  /* Пролёт камеры над длинным скриншотом ([data-fly]).
-     Ключевые кадры: t — секунды; s — масштаб; rx/rz — наклон; p — прокрутка 0…1. */
-  var FLY_KEYS = [
-    { t: 0,    s: 1,    rx: 0,  rz: 0,   p: 0 },
-    { t: 2.4,  s: 1.6,  rx: 34, rz: -11, p: 0.015 },
-    { t: 5.5,  s: 1.68, rx: 37, rz: -14, p: 0.25 },
-    { t: 8.5,  s: 1.6,  rx: 31, rz: -8,  p: 0.5 },
-    { t: 11.5, s: 1.66, rx: 36, rz: -13, p: 0.75 },
-    { t: 14.2, s: 1.58, rx: 32, rz: -10, p: 0.985 },
-    { t: 16.2, s: 1,    rx: 0,  rz: 0,   p: 1 },
-    { t: 17,   s: 1,    rx: 0,  rz: 0,   p: 1 }
-  ];
-  var FLY_LEN = 17;
+  /* Пролёт камеры над длинным скриншотом ([data-fly="пресет"]).
+     Ключевые кадры: t — секунды; s — масштаб; rx/ry/rz — наклон; p — прокрутка 0…1.
+     deep — глубокий наклон и отъезд в конце; soft — лёгкое покачивание, наезд без отъезда. */
+  var FLY_PRESETS = {
+    deep: { len: 17, keys: [
+      { t: 0,    s: 1,    rx: 0,  ry: 0,  rz: 0,   p: 0 },
+      { t: 2.4,  s: 1.6,  rx: 34, ry: 0,  rz: -11, p: 0.015 },
+      { t: 5.5,  s: 1.68, rx: 37, ry: 0,  rz: -14, p: 0.25 },
+      { t: 8.5,  s: 1.6,  rx: 31, ry: 0,  rz: -8,  p: 0.5 },
+      { t: 11.5, s: 1.66, rx: 36, ry: 0,  rz: -13, p: 0.75 },
+      { t: 14.2, s: 1.58, rx: 32, ry: 0,  rz: -10, p: 0.985 },
+      { t: 16.2, s: 1,    rx: 0,  ry: 0,  rz: 0,   p: 1 },
+      { t: 17,   s: 1,    rx: 0,  ry: 0,  rz: 0,   p: 1 }
+    ] },
+    soft: { len: 16, keys: [
+      { t: 0,    s: 1,    rx: 0,  ry: 0,   rz: 0,    p: 0 },
+      { t: 1.6,  s: 1.04, rx: 5,  ry: -6,  rz: -1,   p: 0 },
+      { t: 4,    s: 1.75, rx: 9,  ry: -9,  rz: -2.5, p: 0.07 },
+      { t: 7,    s: 1.8,  rx: 6,  ry: 7,   rz: 1.5,  p: 0.34 },
+      { t: 10,   s: 1.76, rx: 10, ry: -8,  rz: -2,   p: 0.6 },
+      { t: 13,   s: 1.8,  rx: 7,  ry: 7,   rz: 1.5,  p: 0.86 },
+      { t: 16,   s: 1.76, rx: 8,  ry: -3,  rz: -0.5, p: 1 }
+    ] }
+  };
   var ease = function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
 
-  function flyFrame(t) {
+  function flyFrame(keys, t) {
     var i = 0;
-    while (i < FLY_KEYS.length - 2 && t > FLY_KEYS[i + 1].t) i++;
-    var a = FLY_KEYS[i], b = FLY_KEYS[i + 1];
+    while (i < keys.length - 2 && t > keys[i + 1].t) i++;
+    var a = keys[i], b = keys[i + 1];
     var k = ease(Math.min(1, Math.max(0, (t - a.t) / (b.t - a.t))));
     var o = {};
-    ['s', 'rx', 'rz', 'p'].forEach(function (n) { o[n] = a[n] + (b[n] - a[n]) * k; });
+    ['s', 'rx', 'ry', 'rz', 'p'].forEach(function (n) { o[n] = a[n] + (b[n] - a[n]) * k; });
     return o;
   }
 
   document.querySelectorAll('[data-fly]').forEach(function (fly) {
+    var preset = FLY_PRESETS[fly.getAttribute('data-fly')] || FLY_PRESETS.deep;
+    var LEN = preset.len;
     var screen = fly.querySelector('.fly-screen');
     var pic = screen.querySelector('img');
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var visible = false, last = null, clock = 0;
 
+    /* Браузер растрирует 3D-слой в его собственном размере. Поэтому экран
+       сразу делаем в максимальном масштабе пролёта и уменьшаем трансформом —
+       при наезде картинка не растягивается и текст остаётся чётким. */
+    var MAX = preset.keys.reduce(function (m, k) { return Math.max(m, k.s); }, 1);
+    function layout() {
+      screen.style.left = screen.style.top = screen.style.width = '';
+      var x = screen.offsetLeft, y = screen.offsetTop, w = screen.offsetWidth, h = screen.offsetHeight;
+      screen.style.width = (w * MAX) + 'px';
+      screen.style.left = (x - w * (MAX - 1) / 2) + 'px';
+      screen.style.top = (y - h * (MAX - 1) / 2) + 'px';
+    }
+    layout();
+    window.addEventListener('resize', function () { layout(); apply(clock); });
+
     function apply(t) {
-      var f = flyFrame(t);
+      var f = flyFrame(preset.keys, t);
       var travel = Math.max(0, pic.offsetHeight - screen.clientHeight);
-      screen.style.transform = 'scale(' + f.s + ') rotateX(' + f.rx + 'deg) rotateZ(' + f.rz + 'deg)';
+      screen.style.transform = 'scale(' + (f.s / MAX) + ') rotateX(' + f.rx + 'deg) rotateY(' + f.ry + 'deg) rotateZ(' + f.rz + 'deg)';
       pic.style.transform = 'translate3d(0,' + (-f.p * travel) + 'px,0)';
       // мягкая склейка цикла
-      var fade = t > FLY_LEN - .5 ? (FLY_LEN - t) / .5 : (t < .4 ? t / .4 : 1);
+      var fade = t > LEN - .5 ? (LEN - t) / .5 : (t < .4 ? t / .4 : 1);
       screen.style.opacity = String(.15 + .85 * fade);
     }
 
     function tick(now) {
       if (!visible) { last = null; return; }
-      if (last !== null) clock = (clock + (now - last) / 1000) % FLY_LEN;
+      if (last !== null) clock = (clock + (now - last) / 1000) % LEN;
       last = now;
       apply(clock);
       requestAnimationFrame(tick);
     }
 
     if (reduce) {
-      var still = function () { apply(5.5); };
+      var still = function () { apply(LEN * .32); };
       if (pic.complete) still(); else pic.addEventListener('load', still);
       return;
     }
