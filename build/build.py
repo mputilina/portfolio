@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "17"
+ASSET_V = "18"
 
 
 def e(s):
@@ -150,12 +150,31 @@ def page(title, description, body, prefix, active, body_class=""):
 
 # ---------------------------------------------------------------- home
 
+def fly_html(key, colors, prefix, title, extra_cls=""):
+    """Пролёт камеры над длинным скриншотом: 3D-наклон, прокрутка, размытые края.
+    Таймлайн — в assets/js/main.js ([data-fly])."""
+    style = f"--fly-bg:{colors['bg']};--fly-bg2:{colors['bg2']};--fly-glow:{colors['glow']}"
+    return (f'<div class="fly{extra_cls}" data-fly style="{style}" '
+            f'role="img" aria-label="Анимация: прокрутка страницы {e(title)} в перспективе">'
+            f'<div class="fly-glow" aria-hidden="true"></div>'
+            f'<div class="fly-stage"><div class="fly-screen">{img(key, prefix, "")}</div></div>'
+            f'<div class="fly-dof fly-dof-top" aria-hidden="true"></div>'
+            f'<div class="fly-dof fly-dof-bottom" aria-hidden="true"></div>'
+            f'</div>')
+
+
 def tile(c, prefix):
     tags = " ".join(c["tags"])
     pos = c.get("cover_pos", "50% 50%")
+    if c.get("cover_fly"):
+        # обложка-анимация: пролёт камеры над длинным скриншотом
+        key, colors = c["cover_fly"]
+        media = fly_html(key, colors, prefix, c["title"], extra_cls=" fly-tile")
+    else:
+        media = img(c['cover'], prefix, c['title'], style=f'object-position:{pos}', sizes='33vw')
     return f"""
   <a href="{prefix}works/{c['slug']}.html" class="tile reveal" data-tags="{tags}">
-    <div class="tile-media">{img(c['cover'], prefix, c['title'], style=f'object-position:{pos}', sizes='33vw')}</div>
+    <div class="tile-media">{media}</div>
     <div class="tile-info">
       <div class="tile-head"><span class="tile-title">{e(c['title'])}</span><span class="tile-meta">{e(c['subtitle'])}</span></div>
       <p class="tile-desc">{e(c['tile_note'])}</p>
@@ -305,16 +324,7 @@ def render_block(b, prefix, c):
     if kind == "lead":
         return f'<p class="case-lead reveal">{e(b[1])}</p>'
     if kind == "flythrough":
-        # Пролёт камеры над длинным скриншотом: 3D-наклон, прокрутка, размытые края.
-        key, colors = b[1], b[2]
-        style = f"--fly-bg:{colors['bg']};--fly-bg2:{colors['bg2']};--fly-glow:{colors['glow']}"
-        return (f'<figure class="case-figure reveal"><div class="fly" data-fly style="{style}" '
-                f'role="img" aria-label="Анимация: прокрутка страницы {e(c["title"])} в перспективе">'
-                f'<div class="fly-glow" aria-hidden="true"></div>'
-                f'<div class="fly-stage"><div class="fly-screen">{img(key, prefix, "")}</div></div>'
-                f'<div class="fly-dof fly-dof-top" aria-hidden="true"></div>'
-                f'<div class="fly-dof fly-dof-bottom" aria-hidden="true"></div>'
-                f'</div></figure>')
+        return f'<figure class="case-figure reveal">{fly_html(b[1], b[2], prefix, c["title"])}</figure>'
     if kind == "text_static":
         # видим сразу, без анимации появления
         return f'<p class="case-text reveal is-in">{e(b[1])}</p>'

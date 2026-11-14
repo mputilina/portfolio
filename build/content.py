@@ -135,6 +135,7 @@ CASES = [
         "headline": "Редизайн сайта и визуальная поддержка AppSec-платформы",
         "tile_note": "Сайт, соцсети, мерч и раздатка для продукта Digital Security",
         "cover": "hexway/03",
+        "cover_fly": ("hexway/18", {"bg": "#051232", "bg2": "#0A1A3D", "glow": "#18C0F0"}),
         "tags": ["web", "merch", "print", "social"],
         "meta": [
             ("Роль", "Коммуникационный дизайнер"),
