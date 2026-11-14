@@ -214,6 +214,7 @@ CASES = [
                     ("image", "hexway/11", None),
                     ("image", "hexway/12", None),
                     ("image", "hexway/13", None),
+                    ("flythrough", "hexway/18", {"bg": "#051232", "bg2": "#0A1A3D", "glow": "#18C0F0"}),
                     ("image", "hexway/16", None),
                     ("compare", [("Страница продукта «до»", "hexway/17"), ("Страница продукта «после»", "hexway/18")]),
                 ],

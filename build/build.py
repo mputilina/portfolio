@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "13"
+ASSET_V = "14"
 
 
 def e(s):
@@ -290,6 +290,17 @@ def render_block(b, prefix, c):
     kind = b[0]
     if kind == "lead":
         return f'<p class="case-lead reveal">{e(b[1])}</p>'
+    if kind == "flythrough":
+        # Пролёт камеры над длинным скриншотом: 3D-наклон, прокрутка, размытые края.
+        key, colors = b[1], b[2]
+        style = f"--fly-bg:{colors['bg']};--fly-bg2:{colors['bg2']};--fly-glow:{colors['glow']}"
+        return (f'<figure class="case-figure reveal"><div class="fly" data-fly style="{style}" '
+                f'role="img" aria-label="Анимация: прокрутка страницы {e(c["title"])} в перспективе">'
+                f'<div class="fly-glow" aria-hidden="true"></div>'
+                f'<div class="fly-stage"><div class="fly-screen">{img(key, prefix, "")}</div></div>'
+                f'<div class="fly-dof fly-dof-top" aria-hidden="true"></div>'
+                f'<div class="fly-dof fly-dof-bottom" aria-hidden="true"></div>'
+                f'</div></figure>')
     if kind == "text_static":
         # видим сразу, без анимации появления
         return f'<p class="case-text reveal is-in">{e(b[1])}</p>'
