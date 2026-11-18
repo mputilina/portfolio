@@ -199,7 +199,7 @@ CASES = [
                 "title": "Рекламные креативы",
                 "blocks": [
                     ("image", "justai/creatives", None),
-                    ("image", "justai/blog_covers", None),
+                    ("images", ["justai/blog_covers", "justai/tg_post"], 2, "equal"),
                 ],
             },
             {
