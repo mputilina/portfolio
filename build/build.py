@@ -103,7 +103,7 @@ def footer(prefix):
       </div>
       <div class="foot-end">
         <a href="{p['telegram']}" target="_blank" rel="noopener">Telegram</a>
-        <a href="{prefix}{p['cv']}" download>Резюме, PDF</a>
+        <a href="{prefix}{p['cv']}?v={asset_hash(p['cv'])}" download>Резюме, PDF</a>
       </div>
     </div>
     <div class="foot-cell foot-main foot-bottom">
@@ -300,7 +300,7 @@ def build_experience():
     body = f"""
 <section class="xp-hero">
   {intro}
-  <a class="btn-wide reveal" href="{PERSON['cv']}" download>Скачать резюме →</a>
+  <a class="btn-wide reveal" href="{PERSON['cv']}?v={asset_hash(PERSON['cv'])}" download>Скачать резюме →</a>
 </section>
 <section class="xp-section">
   <h2 class="xp-heading">Опыт<br>работы</h2>
