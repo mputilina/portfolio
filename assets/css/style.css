@@ -765,9 +765,9 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .scrollcover-device {
   position: relative;
   width: 90%;
-  padding: 2.2%;
-  border: 3px solid #4D4B57;
-  border-radius: 18px;
+  padding: 1%;
+  border: 2px solid #4D4B57;
+  border-radius: 14px;
   background: rgba(255, 255, 255, .025);
   box-shadow: 0 30px 70px rgba(0, 0, 0, .45);
 }
@@ -806,7 +806,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 /* В теле кейса — широкая сцена, окно чуть меньше */
 .scrollcover-wide { aspect-ratio: 16 / 10; border-radius: var(--radius); }
-.scrollcover-wide .scrollcover-device { width: 80%; border-width: 5px; border-radius: 28px; padding: 1.8%; }
+.scrollcover-wide .scrollcover-device { width: 80%; border-width: 3px; border-radius: 20px; padding: .9%; }
 
 @media (prefers-reduced-motion: reduce) {
   .scrollcover-screen img { animation: none; }
