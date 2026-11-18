@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "25"
+ASSET_V = "27"
 
 
 def e(s):
@@ -450,7 +450,6 @@ def build_case(i):
     <div class="results n{len(c['results'])}">{cells}</div>
   </section>""")
 
-    prev_c = CASES[(i - 1) % len(CASES)]
     next_c = CASES[(i + 1) % len(CASES)]
     context = "".join(f"<p>{e(p)}</p>" for p in c["context"])
 
@@ -466,15 +465,11 @@ def build_case(i):
     <div class="case-context reveal"><span class="eyebrow">Контекст</span>{context}</div>
   </div>
   {''.join(sections)}
-  <nav class="case-next" aria-label="Другие проекты">
-    <a class="case-next-tile reveal" href="{next_c['slug']}.html">
-      <span class="case-next-media">{img(next_c['cover'], prefix, next_c['title'], style='object-position:' + next_c.get('cover_pos', '50% 50%'))}</span>
-      <span class="case-next-text"><span class="eyebrow">Следующий проект</span><span class="case-next-title">{e(next_c['title'])}</span><span class="case-next-sub">{e(next_c['tile_note'])}</span></span>
-    </a>
-    <div class="pager">
-      <a href="{prev_c['slug']}.html">← Предыдущий</a>
-      <a href="../index.html">Все проекты</a>
-      <a href="{next_c['slug']}.html">Следующий →</a>
+  <nav class="case-next" aria-label="Следующий проект">
+    <div class="case-next-col reveal">
+      <p class="case-next-label">Следующий проект</p>
+      <a class="case-next-title" href="{next_c['slug']}.html">{e(next_c['title'])}</a>
+      <a class="case-next-link" href="{next_c['slug']}.html">Смотреть дальше →</a>
     </div>
   </nav>
 </article>"""
