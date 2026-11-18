@@ -760,28 +760,23 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   z-index: -1;
 }
 
+/* Рамка как в референсе: толстая светло-серая линия по контуру,
+   между ней и экраном узкое поле почти цвета фона, крупное скругление */
 .scrollcover-device {
   position: relative;
   width: 90%;
-  padding: 0;
-  border-radius: 10px;
-  background: none;
-  box-shadow: 0 0 0 7px rgba(255, 255, 255, .0), 0 30px 70px rgba(0, 0, 0, .55);
-}
-
-/* тонкий внешний контур, как у референса */
-.scrollcover-device::before {
-  content: ""; position: absolute; inset: -1px;
-  border: 1px solid #5A5C68;
-  border-radius: 9px;
-  pointer-events: none;
+  padding: 2.2%;
+  border: 3px solid #4D4B57;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, .025);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, .45);
 }
 
 .scrollcover-screen {
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 10px;
   background: #030303;
   container-type: size;
 }
@@ -811,8 +806,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 /* В теле кейса — широкая сцена, окно чуть меньше */
 .scrollcover-wide { aspect-ratio: 16 / 10; border-radius: var(--radius); }
-.scrollcover-wide .scrollcover-device { width: 80%; border-radius: 16px; }
-.scrollcover-wide .scrollcover-device::before { inset: -1px; border-radius: 9px; }
+.scrollcover-wide .scrollcover-device { width: 80%; border-width: 5px; border-radius: 28px; padding: 1.8%; }
 
 @media (prefers-reduced-motion: reduce) {
   .scrollcover-screen img { animation: none; }
