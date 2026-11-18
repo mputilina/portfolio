@@ -14,7 +14,6 @@ PERSON = {
     "phone_href": "tel:+79952379002",
     "location": "Россия, Санкт-Петербург",
     "cv": "assets/files/putilina-cv.pdf",
-    "behance": "https://www.behance.net/gallery/143096117/LIMONCELLO-branding",
 }
 
 # Фильтры на главной: ключ → подпись
@@ -559,7 +558,7 @@ CASES = [
         "subtitle": "Брендинг и упаковка",
         "headline": "Логотип и этикетки для домашнего лимончелло",
         "tile_note": "Логотип с котами и этикетка для каждого вкуса",
-        "cover": "limoncello/02",
+        "cover": "limoncello/cover",
         "tags": ["identity", "packaging"],
         "meta": [
             ("Роль", "Дизайнер"),
@@ -578,7 +577,6 @@ CASES = [
                 "blocks": [
                     ("image", "limoncello/01", None),
                     ("images", ["limoncello/02", "limoncello/03"], 2),
-                    ("behance", "Полный кейс на Behance"),
                 ],
             },
         ],

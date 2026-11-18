@@ -397,8 +397,6 @@ def render_block(b, prefix, c):
             f'<span class="site-card-label">{e(lbl)} <span aria-hidden="true">↗</span></span></a>'
             for lbl, url, f in b[1])
         return f'<div class="site-cards reveal">{cards}</div>'
-    if kind == "behance":
-        return f'<a class="btn-wide reveal" href="{PERSON["behance"]}" target="_blank" rel="noopener">{e(b[1])} ↗</a>'
     raise ValueError(kind)
 
 
