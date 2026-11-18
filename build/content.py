@@ -198,7 +198,7 @@ CASES = [
                 "label": "Креативы",
                 "title": "Рекламные креативы",
                 "blocks": [
-                    ("image", "justai/creatives", None),
+                    ("images", ["justai/tg_caila", "justai/creatives"], 2, "equal"),
                     ("images", ["justai/blog_covers", "justai/tg_post"], 2, "equal"),
                 ],
             },
