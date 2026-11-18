@@ -133,6 +133,7 @@ CASES = [
         "headline": "Запуск маркетплейса ИИ-агентов для бизнеса",
         "tile_note": "Каталог готовых AI-агентов для маркетинга, продаж и HR",
         "cover": "marketplace/cover",
+        "cover_scroll": "marketplace/page",
         "tags": ["web"],
         "meta": [
             ("Роль", "Коммуникационный дизайнер"),
@@ -149,7 +150,7 @@ CASES = [
                 "label": "Визуальный итог",
                 "title": "Каталог агентов",
                 "blocks": [
-                    ("image", "marketplace/cover", None),
+                    ("scrollcover", "marketplace/page"),
                     ("scroll", "marketplace/page", "Главная страница маркетплейса"),
                 ],
             },
