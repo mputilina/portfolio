@@ -902,9 +902,11 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: var(--gap);
-  margin: 150px var(--pad) 0;
-  padding: 24px 0 40px;
-  border-radius: 10px;
+  /* отступы по andykarter.com: 130px до и после блока,
+     20px от подписи до названия, 10px от названия до ссылки */
+  margin: 130px var(--pad) 0;
+  padding: 20px 0 24px;
+  border-radius: var(--radius);
   background: var(--fill-2);
 }
 
@@ -913,7 +915,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .case-next-label { font-size: 14px; color: var(--gray); }
 
 .case-next-title {
-  margin-top: 26px;
+  margin-top: 20px;
   font-size: clamp(30px, 2.8vw, 40px);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -923,7 +925,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 }
 
 .case-next-link {
-  margin-top: 12px;
+  margin-top: 10px;
   font-size: 15px;
   color: var(--ink);
   text-decoration: underline;
@@ -933,6 +935,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 }
 
 .case-next-title:hover, .case-next-link:hover { color: var(--gray); }
+.page-case .site-foot { padding-top: 130px; }
 .case-next-link:hover { text-underline-offset: 6px; }
 
 
@@ -1019,7 +1022,8 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   .results, .results.n2 { grid-template-columns: 1fr; }
   .result + .result { border-left: 0; }
   .result { padding: 30px 10px; }
-  .case-next { grid-template-columns: 1fr; margin-top: 100px; padding: 20px 16px 30px; }
+  .case-next { grid-template-columns: 1fr; margin-top: 100px; padding: 20px 16px 24px; }
+  .page-case .site-foot { padding-top: 100px; }
   .case-next-col { grid-column: auto; padding-right: 0; }
 
   .site-foot { padding-top: 110px; }
