@@ -624,6 +624,9 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 .case-context p { margin-top: 18px; color: var(--gray); font-size: 14px; max-width: 560px; }
 .case-context p + p { margin-top: 12px; }
+.case-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 18px; font-size: 14px; }
+.case-links a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; transition: color .2s ease; }
+.case-links a:hover { color: var(--gray); }
 
 .case-section { padding: 120px var(--pad) 0; }
 
@@ -743,35 +746,34 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   overflow: hidden;
   display: grid;
   place-items: center;
-  background: linear-gradient(180deg, #1E1E23 0%, #141419 70%, #0E1018 100%);
+  background: linear-gradient(180deg, #2E2D34 0%, #24232B 45%, #1B1E2E 100%);
   isolation: isolate;
 }
 
 .scrollcover-glow {
-  position: absolute; inset: auto -20% -38% -20%;
-  height: 70%;
+  position: absolute; inset: auto -25% -30% -25%;
+  height: 85%;
   background:
-    radial-gradient(50% 55% at 50% 60%, rgba(90, 150, 255, .55), transparent 70%),
-    radial-gradient(70% 60% at 50% 70%, rgba(40, 110, 235, .45), transparent 75%);
-  filter: blur(40px);
+    radial-gradient(48% 52% at 50% 62%, rgba(120, 175, 255, .85), transparent 72%),
+    radial-gradient(75% 65% at 50% 72%, rgba(50, 120, 245, .75), transparent 78%);
+  filter: blur(36px);
   z-index: -1;
 }
 
 .scrollcover-device {
   position: relative;
-  width: 84%;
-  padding: 1.4%;
-  border-radius: 14px;
+  width: 90%;
+  padding: 1%;
+  border-radius: 12px;
   background: #161619;
-  border: 1px solid #34343C;
   box-shadow: 0 0 0 7px rgba(255, 255, 255, .0), 0 30px 70px rgba(0, 0, 0, .55);
 }
 
 /* тонкий внешний контур, как у референса */
 .scrollcover-device::before {
-  content: ""; position: absolute; inset: -8px;
-  border: 1px solid #464852;
-  border-radius: 20px;
+  content: ""; position: absolute; inset: -7px;
+  border: 1px solid #5A5C68;
+  border-radius: 18px;
   pointer-events: none;
 }
 
@@ -809,8 +811,8 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 
 /* В теле кейса — широкая сцена, окно чуть меньше */
 .scrollcover-wide { aspect-ratio: 16 / 10; border-radius: var(--radius); }
-.scrollcover-wide .scrollcover-device { width: 72%; border-radius: 18px; }
-.scrollcover-wide .scrollcover-device::before { inset: -12px; border-radius: 28px; }
+.scrollcover-wide .scrollcover-device { width: 80%; border-radius: 16px; }
+.scrollcover-wide .scrollcover-device::before { inset: -11px; border-radius: 26px; }
 
 @media (prefers-reduced-motion: reduce) {
   .scrollcover-screen img { animation: none; }
