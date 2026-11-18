@@ -763,17 +763,17 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 .scrollcover-device {
   position: relative;
   width: 90%;
-  padding: 1%;
-  border-radius: 12px;
-  background: #161619;
+  padding: 0;
+  border-radius: 10px;
+  background: none;
   box-shadow: 0 0 0 7px rgba(255, 255, 255, .0), 0 30px 70px rgba(0, 0, 0, .55);
 }
 
 /* тонкий внешний контур, как у референса */
 .scrollcover-device::before {
-  content: ""; position: absolute; inset: -7px;
+  content: ""; position: absolute; inset: -1px;
   border: 1px solid #5A5C68;
-  border-radius: 18px;
+  border-radius: 9px;
   pointer-events: none;
 }
 
@@ -812,7 +812,7 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
 /* В теле кейса — широкая сцена, окно чуть меньше */
 .scrollcover-wide { aspect-ratio: 16 / 10; border-radius: var(--radius); }
 .scrollcover-wide .scrollcover-device { width: 80%; border-radius: 16px; }
-.scrollcover-wide .scrollcover-device::before { inset: -11px; border-radius: 26px; }
+.scrollcover-wide .scrollcover-device::before { inset: -1px; border-radius: 9px; }
 
 @media (prefers-reduced-motion: reduce) {
   .scrollcover-screen img { animation: none; }
