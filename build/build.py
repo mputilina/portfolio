@@ -16,7 +16,7 @@ ROOT = os.path.dirname(HERE)
 import sys
 sys.path.insert(0, HERE)
 from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # noqa: E402
-                     EDUCATION, TOOLS, ABOUT)
+                     EDUCATION, LANGUAGES, TOOLS, ABOUT)
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
@@ -266,7 +266,7 @@ def build_experience():
         about = f'<p class="xp-about">{e(j["about"])}</p>' if j.get("about") else ""
         hl = ""
         if j.get("highlights"):
-            hl = '<div class="xp-highlights"><p class="eyebrow">Яркие достижения</p><ul>' + "".join(
+            hl = '<div class="xp-highlights"><p class="eyebrow">Достижения</p><ul>' + "".join(
                 f"<li>{e(h)}</li>" for h in j["highlights"]) + "</ul></div>"
         thumbs = []
         for slug in j.get("cases", []):
@@ -296,6 +296,9 @@ def build_experience():
         f'<div class="edu-row reveal"><span class="xp-date">{e(d)}</span><div><h3>{e(t)}</h3>'
         f'{f"<p>{e(s)}</p>" if s else ""}</div></div>' for d, t, s in EDUCATION)
     tools = "".join(f"<li>{e(t)}</li>" for t in TOOLS)
+    langs = "".join(
+        f'<div class="edu-row reveal"><span class="xp-date">{e(lvl)}</span><div><h3>{e(lang)}</h3></div></div>'
+        for lang, lvl in LANGUAGES)
 
     body = f"""
 <section class="xp-hero">
@@ -310,6 +313,10 @@ def build_experience():
 <section class="xp-section">
   <h2 class="xp-heading">Образование<br>и курсы</h2>
   <div class="xp-list">{edu}</div>
+</section>
+<section class="xp-section">
+  <h2 class="xp-heading">Языки</h2>
+  <div class="xp-list">{langs}</div>
 </section>
 <section class="xp-section">
   <h2 class="xp-heading">Инструменты</h2>
