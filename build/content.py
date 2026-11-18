@@ -577,9 +577,8 @@ CASES = [
                 "label": "Визуальный итог",
                 "title": "Логотип и этикетки",
                 "blocks": [
-                    ("image", "limoncello/01", None),
-                    ("image", "limoncello/cards", None),
                     ("image", "limoncello/sticker", None),
+                    ("image", "limoncello/cards", None),
                     ("image", "limoncello/cans", None),
                     ("images", ["limoncello/02", "limoncello/03"], 2),
                 ],
