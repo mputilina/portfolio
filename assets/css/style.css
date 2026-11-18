@@ -283,37 +283,13 @@ button { font: inherit; color: inherit; }
   scroll-margin-top: 40px;
 }
 
-.foot-title {
-  max-width: 760px;
-  font-size: clamp(26px, 3vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.foot-button {
-  display: inline-flex;
-  align-items: center;
-  margin-top: 26px;
-  padding: 9px 20px 10px;
-  border-radius: 999px;
-  background: var(--fill);
-  color: var(--ink);
-  font-size: clamp(16px, 1.4vw, 20px);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  transition: background-color .25s ease, color .25s ease;
-}
-
-.foot-button:hover { background: var(--ink); color: #fff; }
 
 .foot-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: var(--gap);
   row-gap: 90px;
-  margin-top: 72px;
-  padding-top: 24px;
+    padding-top: 24px;
   border-top: 1px solid var(--line);
   font-size: 14px;
   line-height: 1.5;
@@ -927,11 +903,12 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: var(--gap);
   margin: 150px var(--pad) 0;
-  padding: 20px 0 0;
-  border-top: 1px solid var(--line);
+  padding: 24px 0 40px;
+  border-radius: 10px;
+  background: var(--fill-2);
 }
 
-.case-next-col { grid-column: 3; display: flex; flex-direction: column; align-items: flex-start; }
+.case-next-col { grid-column: 3; display: flex; flex-direction: column; align-items: flex-start; padding-right: 20px; }
 
 .case-next-label { font-size: 14px; color: var(--gray); }
 
@@ -1042,13 +1019,11 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   .results, .results.n2 { grid-template-columns: 1fr; }
   .result + .result { border-left: 0; }
   .result { padding: 30px 10px; }
-  .case-next { grid-template-columns: 1fr; margin-top: 100px; }
-  .case-next-col { grid-column: auto; }
+  .case-next { grid-template-columns: 1fr; margin-top: 100px; padding: 20px 16px 30px; }
+  .case-next-col { grid-column: auto; padding-right: 0; }
 
   .site-foot { padding-top: 110px; }
-  .foot-title { font-size: 22px; line-height: 1.2; }
-  .foot-button { display: flex; justify-content: center; margin-top: 30px; min-height: 52px; font-size: 16px; }
-  .foot-grid { grid-template-columns: 1fr; row-gap: 40px; margin-top: 60px; }
+  .foot-grid { grid-template-columns: 1fr; row-gap: 40px; }
   .foot-main { grid-column: auto; }
   .foot-side { display: grid; grid-template-columns: 1fr 1fr; row-gap: 40px; }
   .foot-side:not(.foot-bottom) > div:first-child { grid-column: 1 / -1; }

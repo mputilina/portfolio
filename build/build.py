@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "27"
+ASSET_V = "28"
 
 
 def e(s):
@@ -88,10 +88,6 @@ def footer(prefix):
     year = datetime.date.today().year
     return f"""
 <footer class="site-foot" id="contacts">
-  <div class="foot-cta reveal">
-    <p class="foot-title">{e(p['footer_title'])}</p>
-    <a class="foot-button" href="{p['telegram']}" target="_blank" rel="noopener">{e(p['footer_button'])}</a>
-  </div>
   <div class="foot-grid">
     <div class="foot-cell foot-main">
       <p>{e(p['location'])}</p>
