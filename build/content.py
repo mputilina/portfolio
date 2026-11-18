@@ -199,6 +199,7 @@ CASES = [
                 "title": "Рекламные креативы",
                 "blocks": [
                     ("image", "justai/creatives", None),
+                    ("image", "justai/blog_covers", None),
                 ],
             },
             {
@@ -212,7 +213,9 @@ CASES = [
                 "label": "Мероприятия",
                 "title": "Стенды и мерч на площадке",
                 "blocks": [
-                    ("images", ["justai/stand_jayflow", "justai/merch_event"], 2),
+                    ("image", "justai/stand_agent", None),
+                    ("images", ["justai/stand_hr", "justai/stand_jayflow"], 2),
+                    ("images", ["justai/merch_table", "justai/merch_event"], 2),
                 ],
             },
         ],
