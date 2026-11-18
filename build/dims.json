@@ -382,5 +382,25 @@
 "justai/cover": [
 1600,
 2000
+],
+"justai/creatives": [
+1600,
+900
+],
+"justai/newyear_1": [
+1232,
+1280
+],
+"justai/newyear_2": [
+1280,
+960
+],
+"justai/stand_jayflow": [
+960,
+1280
+],
+"justai/merch_event": [
+960,
+1280
 ]
 }
