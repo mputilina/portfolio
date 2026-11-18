@@ -55,7 +55,7 @@ CASES = [
         "subtitle": "Конференция и премия Just AI",
         "headline": "Визуальная среда конференции Conversations и премии Generation AI Awards",
         "tile_note": "Стенды, фотозоны, мерч и наградная продукция для двух главных событий Just AI",
-        "cover": "conversations/cover",
+        "cover": "conversations/merch_5",
         "tags": ["events", "merch", "print", "identity"],
         "meta": [
             ("Роль", "Коммуникационный дизайнер"),
