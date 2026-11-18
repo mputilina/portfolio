@@ -370,5 +370,17 @@
 "hexway/before_after": [
 1920,
 1080
+],
+"marketplace/cover": [
+1600,
+2000
+],
+"marketplace/page": [
+961,
+2000
+],
+"justai/cover": [
+1600,
+2000
 ]
 }
