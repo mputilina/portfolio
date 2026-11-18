@@ -500,7 +500,7 @@ CASES = [
         "subtitle": "Стаффинговая компания",
         "headline": "Мерч, иллюстрации, лендинги и соцсети для клиентов Ancor",
         "tile_note": "Работа с HR-командой: Алроса, Nissan, ESG Fest, РГТ",
-        "cover": "ancor/12",
+        "cover": "ancor/cover",
         "tags": ["print", "illustration", "merch", "social"],
         "meta": [
             ("Роль", "Дизайнер (парт-тайм)"),
@@ -546,8 +546,8 @@ CASES = [
                 "label": "Соцсети",
                 "title": "ANDY Talks и ESG Fest",
                 "blocks": [
-                    ("images", ["ancor/11", "ancor/12"], 2),
-                    ("images", ["ancor/13", "ancor/14", "ancor/15"], 3),
+                    ("images", ["ancor/12", "ancor/14", "ancor/15"], 3),
+                    ("image", "ancor/11", None),
                 ],
             },
         ],
