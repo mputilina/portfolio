@@ -20,7 +20,7 @@ from content import (PERSON, FILTERS, CASES, EXPERIENCE, EXPERIENCE_INTRO,  # no
 
 DIMS = json.load(open(os.path.join(HERE, "dims.json")))
 CASE_BY_SLUG = {c["slug"]: c for c in CASES}
-ASSET_V = "36"
+ASSET_V = "37"
 
 
 def e(s):
@@ -160,9 +160,11 @@ def fly_html(key, colors, prefix, title, extra_cls=""):
             f'</div>')
 
 
-def scrollcover_html(key, prefix, title, extra_cls=""):
+def scrollcover_html(key, prefix, title, extra_cls="", theme=""):
     """Окно 16:9 в тёмной рамке, внутри прокручивается длинный скриншот.
     Движение — в CSS (@keyframes scrollcover): пауза, разгон, торможение."""
+    if theme:
+        extra_cls += f" scrollcover-{theme}"
     return (f'<div class="scrollcover{extra_cls}" role="img" '
             f'aria-label="Анимация: прокрутка страницы {e(title)}">'
             f'<div class="scrollcover-glow" aria-hidden="true"></div>'
@@ -174,7 +176,7 @@ def tile(c, prefix):
     tags = " ".join(c["tags"])
     pos = c.get("cover_pos", "50% 50%")
     if c.get("cover_scroll"):
-        media = scrollcover_html(c["cover_scroll"], prefix, c["title"])
+        media = scrollcover_html(c["cover_scroll"], prefix, c["title"], theme=c.get("cover_theme", ""))
     elif c.get("cover_fly"):
         # обложка-анимация: пролёт камеры над длинным скриншотом
         key, colors = c["cover_fly"]
@@ -340,7 +342,7 @@ def render_block(b, prefix, c):
     if kind == "lead":
         return f'<p class="case-lead reveal">{e(b[1])}</p>'
     if kind == "scrollcover":
-        return f'<figure class="case-figure reveal">{scrollcover_html(b[1], prefix, c["title"], " scrollcover-wide")}</figure>'
+        return f'<figure class="case-figure reveal">{scrollcover_html(b[1], prefix, c["title"], " scrollcover-wide", theme=c.get("cover_theme", ""))}</figure>'
     if kind == "flythrough":
         return f'<figure class="case-figure reveal">{fly_html(b[1], b[2], prefix, c["title"])}</figure>'
     if kind == "text_static":

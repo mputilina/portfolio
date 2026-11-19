@@ -804,6 +804,15 @@ a.xp-thumb .xp-thumb-label { z-index: 1; }
   100% { transform: translate3d(0, 0, 0); }
 }
 
+/* Тема Jay Copilot: глубокий индиго сайта с фиолетовым свечением */
+.scrollcover-indigo { background: linear-gradient(180deg, #23246E 0%, #16175B 50%, #0C0D3E 100%); }
+.scrollcover-indigo .scrollcover-glow {
+  background:
+    radial-gradient(48% 52% at 50% 62%, rgba(150, 120, 255, .85), transparent 72%),
+    radial-gradient(75% 65% at 50% 72%, rgba(95, 80, 240, .75), transparent 78%);
+}
+.scrollcover-indigo .scrollcover-device { border-color: #5E5C9A; }
+
 /* В теле кейса — широкая сцена, окно чуть меньше */
 .scrollcover-wide { aspect-ratio: 16 / 10; border-radius: var(--radius); }
 .scrollcover-wide .scrollcover-device { width: 80%; border-width: 3px; border-radius: 20px; padding: .9%; }

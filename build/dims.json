@@ -363,14 +363,6 @@
 1920,
 1080
 ],
-"marketplace/cover": [
-1600,
-2000
-],
-"marketplace/page": [
-961,
-2000
-],
 "justai/cover": [
 864,
 1080
@@ -450,5 +442,9 @@
 "limoncello/cans": [
 1600,
 1200
+],
+"jaycopilot/page": [
+1440,
+8149
 ]
 }
