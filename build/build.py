@@ -113,7 +113,7 @@ def footer(prefix):
 </footer>"""
 
 
-def page(title, description, body, prefix, active, body_class=""):
+def page(title, description, body, prefix, active, body_class="", og_image="hexway/01"):
     return f"""<!doctype html>
 <html lang="ru">
 <head>
@@ -124,7 +124,7 @@ def page(title, description, body, prefix, active, body_class=""):
 <meta name="description" content="{e(description)}">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(description)}">
-<meta property="og:image" content="{prefix}assets/img/hexway/01.webp">
+<meta property="og:image" content="{prefix}assets/img/{og_image}.webp">
 <link rel="icon" href="{prefix}assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -337,6 +337,11 @@ def build_experience():
 
 # ---------------------------------------------------------------- case
 
+def alt_for(c, key):
+    """Описание картинки для скринридеров: из словаря alts кейса или название кейса."""
+    return c.get("alts", {}).get(key, c["title"])
+
+
 def render_block(b, prefix, c):
     kind = b[0]
     if kind == "lead":
@@ -368,7 +373,7 @@ def render_block(b, prefix, c):
         items = [f if isinstance(f, tuple) else (f, None) for f in b[1]]
         files, cols = [f for f, _ in items], b[2]
         figs = "".join(
-            f'<figure class="case-figure">{img(f, prefix, c["title"])}'
+            f'<figure class="case-figure">{img(f, prefix, alt_for(c, f))}'
             f'{f"<figcaption class=case-caption>{e(cap)}</figcaption>" if cap else ""}</figure>'
             for f, cap in items)
         ratios = [DIMS[f][0] / DIMS[f][1] for f in files]
@@ -407,14 +412,14 @@ def single_figure(key, caption, prefix, c):
     if h / w > 1.6:          # длинный макет — в окне с прокруткой
         media, cls = scroll_frame(key, prefix, c), ""
     else:                    # вертикальное и квадратное фото не выше экрана
-        media, cls = img(key, prefix, c["title"]), (" is-upright" if h / w > 0.9 else "")
+        media, cls = img(key, prefix, alt_for(c, key)), (" is-upright" if h / w > 0.9 else "")
     cap = f'<figcaption class="case-caption">{e(caption)}</figcaption>' if caption else ""
     return f'<figure class="case-figure{cls} reveal">{media}{cap}</figure>'
 
 
 def scroll_frame(key, prefix, c):
     return (f'<div class="scroll-frame" tabindex="0" aria-label="Длинный макет, прокрутите внутри">'
-            f'{img(key, prefix, c["title"])}</div>')
+            f'{img(key, prefix, alt_for(c, key))}</div>')
 
 
 def build_case(i):
@@ -450,14 +455,20 @@ def build_case(i):
 
     if c["results"]:
         n += 1
-        cells = "".join(
-            f'<div class="result reveal"><span class="eyebrow">{e(lbl)}</span><strong>{e(v)}</strong>'
-            f'{f"<span class=result-note>{e(note)}</span>" if note else ""}</div>'
-            for lbl, v, note in c["results"])
+        # results — один ряд [(подпись, число, сноска)] или несколько рядов [[...], [...]]
+        rows = c["results"] if isinstance(c["results"][0], list) else [c["results"]]
+        html_rows = []
+        for k, row in enumerate(rows):
+            cells = "".join(
+                f'<div class="result reveal"><span class="eyebrow">{e(lbl)}</span><strong>{e(v)}</strong>'
+                f'{f"<span class=result-note>{e(note)}</span>" if note else ""}</div>'
+                for lbl, v, note in row)
+            style = ' style="margin-top:40px"' if k else ""
+            html_rows.append(f'<div class="results n{len(row)}"{style}>{cells}</div>')
         sections.append(f"""
   <section class="case-section case-results">
     <div class="section-head reveal"><span class="section-num">{n:02d}</span><span class="section-label">{e(c.get('results_label', 'Ключевые результаты'))}</span></div>
-    <div class="results n{len(c['results'])}">{cells}</div>
+    {chr(10).join(html_rows)}
   </section>""")
 
     next_c = CASES[(i + 1) % len(CASES)]
@@ -486,7 +497,7 @@ def build_case(i):
     </div>
   </nav>
 </article>"""
-    return page(f"{c['title']}. {c['subtitle']} — {PERSON['name']}", c["tldr"], body, prefix, "work", "page-case")
+    return page(f"{c['title']}. {c['subtitle']} — {PERSON['name']}", c.get("description", c["tldr"]), body, prefix, "work", "page-case", og_image=c["cover"])
 
 
 def main():
