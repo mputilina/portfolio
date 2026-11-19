@@ -450,5 +450,17 @@
 "marketplace/page": [
 961,
 2000
+],
+"conversations/site_conf": [
+1600,
+900
+],
+"conversations/site_awards": [
+1600,
+900
+],
+"conversations/digital": [
+1600,
+900
 ]
 }
